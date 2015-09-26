@@ -25,3 +25,17 @@ try {
                     // Now you can redirect to another page and use the
                       // access token from $_SESSION['facebook_access_token']
                       }
+
+try {
+  // Returns a `Facebook\FacebookResponse` object
+    $response = $fb->get('/me?fields=id,name,likes', $accessToken);
+    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      echo 'Graph returned an error: ' . $e->getMessage();
+        exit;
+        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+          echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+            }
+
+            $user = $response->getGraphUser();
+
